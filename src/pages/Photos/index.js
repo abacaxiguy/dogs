@@ -17,13 +17,13 @@ export default function Photos() {
 
   return (
     <Container>
-      {photos.map((photo) => {
+      {photos.map((photo) => (
         <div key={String(photo.id)}>
           <span>{photo.title}</span>
-          ey
-          <img src={photo.src} alt={photo.title} />
-        </div>;
-      })}
+          <img src={photo.url} alt={photo.title} />
+        </div>
+      ))}
+      Photos
     </Container>
   );
 }
