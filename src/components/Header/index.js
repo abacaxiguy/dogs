@@ -1,24 +1,24 @@
 import React from 'react';
-import { FaHome, FaSignInAlt, FaUserAlt } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { FaUserAlt } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
-import { Nav } from './styled';
+import { Head, Nav, Logo, Login } from './styled';
+import { ReactComponent as Dogs } from '../../assets/dogs.svg';
 
 export default function Header() {
   const botaoClicado = useSelector((state) => state.example.botaoClicado);
+  console.log(botaoClicado);
 
   return (
-    <Nav>
-      <Link to="/">
-        <FaHome size={botaoClicado ? 24 : 50} />
-      </Link>
-      <Link to="/user">
-        <FaUserAlt size={24} />
-      </Link>
-      <Link to="/login">
-        <FaSignInAlt size={24} />
-      </Link>
-    </Nav>
+    <Head>
+      <Nav>
+        <Logo to="/">
+          <Dogs />
+        </Logo>
+        <Login to="/login">
+          Login <FaUserAlt />
+        </Login>
+      </Nav>
+    </Head>
   );
 }

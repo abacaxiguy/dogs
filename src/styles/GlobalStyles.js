@@ -1,51 +1,51 @@
 import styled, { createGlobalStyle } from 'styled-components';
-import * as colors from '../config/colors';
 import 'react-toastify/dist/ReactToastify.css';
+
+import { typeFirst, primaryDarkColor } from '../config/variables';
 
 export default createGlobalStyle`
   *{
-    margin: 0;
-    padding: 0;
-    outline: none;
-    box-sizing: border-box;
+    font-family: ${typeFirst};
   }
 
   body{
-    font-family: sans-serif;
-    background: ${colors.primaryDarkColor};
-    color: ${colors.primaryDarkColor};
+    outline: none;
+    padding-top: 4rem;
+    margin: 0px;
+    box-sizing: border-box;
+    color: ${primaryDarkColor};
   }
 
-  html, body, #root{
-    height: 100%;
+  h1, h2, h3, h4, p{
+    margin: 0px;
   }
 
-  button{
-    cursor: pointer;
-    background: ${colors.primaryColor};
-    border: none;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 6px;
-    font-weight: 700;
+  ul, li{
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  img{
+    display: block;
+    max-width: 100%;
+  }
+
+  button, input{
+    display: block;
+    font-size: 1rem;
+    font-family: ${typeFirst};
+    color: ${primaryDarkColor};
   }
 
   a{
-    text-decoration: none;
-    color: ${colors.primaryColor};
-  }
-
-  ul{
-    list-style: none;
+    text-decoration: none
   }
 
 `;
 
 export const Container = styled.section`
-  max-width: 360px;
-  background: #fff;
-  margin: 30px auto;
-  padding: 30px;
-  border-radius: 6px;
-  box-shadow: 5px 5px 14px rgba(0, 0, 0, 0.1);
+  max-width: 50rem;
+  padding: 0 1rem;
+  margin: 0 auto;
 `;
