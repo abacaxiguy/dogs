@@ -4,6 +4,7 @@ import axios from '../../services/axios';
 // import { useDispatch } from 'react-redux';
 
 // import * as actions from '../../store/modules/auth/actions';
+import { InputContainer, Button } from '../../styles/GlobalStyles';
 
 export default function Login() {
   // const dispatch = useDispatch();
@@ -28,17 +29,25 @@ export default function Login() {
     <section>
       <h1>Login</h1>
       <form action="" onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={username}
-          onChange={({ target }) => setUsername(target.value)}
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={({ target }) => setPassword(target.value)}
-        />
-        <button>Entrar</button>
+        <InputContainer>
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            value={username}
+            id="username"
+            onChange={({ target }) => setUsername(target.value)}
+          ></input>
+        </InputContainer>
+        <InputContainer>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            value={password}
+            id="password"
+            onChange={({ target }) => setPassword(target.value)}
+          ></input>
+        </InputContainer>
+        <Button>Login</Button>
       </form>
       <Link to="/login/register">And this is register</Link>
     </section>
