@@ -11,7 +11,7 @@ export default function Routes() {
   return (
     <Switch>
       <MyRoute exact path="/" component={Photos} />
-      <MyRoute exact path="/login" component={Login} />
+      <MyRoute exact path="/login" isLoggedOff={true} component={Login} />
       <MyRoute exact path="/login/register" component={Register} />
       <MyRoute path="*" component={Page404} />
     </Switch>

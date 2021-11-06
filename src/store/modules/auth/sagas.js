@@ -11,13 +11,13 @@ function* loginRequest({ payload }) {
     const response = yield call(axios.post, '/tokens', payload);
     yield put(actions.loginSuccess({ ...response.data }));
 
-    toast.success('Login efetuado com sucesso.');
+    toast.success('You are successfully logged in.');
 
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
     history.push(payload.prevPath);
   } catch (e) {
-    toast.error('Usuário ou senha inválidos!');
+    toast.error('Username or password invalid!');
 
     yield put(actions.loginFailure());
   }

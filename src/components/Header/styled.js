@@ -24,6 +24,11 @@ export const Nav = styled.nav`
 export const Logo = styled(Link)`
   padding: 0.5rem 0;
 `;
+
 export const Login = styled(Link)`
+  color: ${primaryDarkColor};
+`;
+
+export const Account = styled(Link)`
   color: ${primaryDarkColor};
 `;

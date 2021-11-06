@@ -1,9 +1,11 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { typeFirst, primaryDarkColor } from '../config/variables';
+import { typeFirst, typeSecond, primaryDarkColor } from '../config/variables';
 
 export default createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
+
   *{
     font-family: ${typeFirst};
   }
@@ -39,7 +41,8 @@ export default createGlobalStyle`
   }
 
   a{
-    text-decoration: none
+    text-decoration: none;
+    color: #333;
   }
 
 `;
@@ -100,5 +103,40 @@ export const Button = styled.button`
   &:disabled {
     opacity: 0.5;
     cursor: wait;
+  }
+`;
+
+export const Section = styled.section`
+  opacity: 0;
+  transform: translateX(-40px);
+  animation: animateLeft 0.5s forwards;
+
+  @keyframes animateLeft {
+    to {
+      opacity: 1;
+      transform: initial;
+    }
+  }
+`;
+
+export const Title = styled.h1`
+  font-family: ${typeSecond};
+  line-height: 1;
+  font-size: 3rem;
+  margin: 1rem 0;
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: '';
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: #fb1;
+    position: absolute;
+    bottom: 5px;
+    left: -5px;
+    border-radius: 0.2rem;
+    z-index: -1;
   }
 `;

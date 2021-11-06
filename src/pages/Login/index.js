@@ -1,13 +1,28 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from '../../services/axios';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { get } from 'lodash';
+import { useSelector } from 'react-redux';
 
-// import * as actions from '../../store/modules/auth/actions';
-import { InputContainer, Button } from '../../styles/GlobalStyles';
+import * as actions from '../../store/modules/auth/actions';
+import {
+  InputContainer,
+  Button,
+  Section,
+  Title,
+} from '../../styles/GlobalStyles';
+import { Register, Form } from './styled';
+import { toast } from 'react-toastify';
 
-export default function Login() {
-  // const dispatch = useDispatch();
+export default function Login(props) {
+  const dispatch = useDispatch();
+
+  const prevPath = get(props, 'location.state.prevPath', '/');
+
+  const isLoading = useSelector((state) => {
+    console.log(state);
+    return state.auth.isLoading;
+  });
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,20 +30,17 @@ export default function Login() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    try {
-      const response = await axios.post('/tokens', { username, password });
-
-      console.log(response.data);
-    } catch (e) {
-      console.log(e);
+    if (!username || !password) {
+      toast.error('Invalid fields!');
     }
-    // dispatch(actions.loginRequest({ username, password }));
+
+    dispatch(actions.loginRequest({ username, password, prevPath }));
   }
 
   return (
-    <section>
-      <h1>Login</h1>
-      <form action="" onSubmit={handleSubmit}>
+    <Section>
+      <Title>Login</Title>
+      <Form onSubmit={handleSubmit}>
         <InputContainer>
           <label htmlFor="username">Username</label>
           <input
@@ -47,9 +59,17 @@ export default function Login() {
             onChange={({ target }) => setPassword(target.value)}
           ></input>
         </InputContainer>
-        <Button>Login</Button>
-      </form>
-      <Link to="/login/register">And this is register</Link>
-    </section>
+        <Button disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Login'}
+        </Button>
+      </Form>
+      <Register>
+        <h2>Register</h2>
+        <p>Still don&apos;t have an account? Create your account now.</p>
+        <Link to="/login/register">
+          <Button>Create account</Button>
+        </Link>
+      </Register>
+    </Section>
   );
 }
