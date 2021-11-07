@@ -8,8 +8,10 @@ import * as actions from '../../store/modules/auth/actions';
 import {
   InputContainer,
   Button,
-  Section,
+  Animate,
   Title,
+  Forms,
+  LoginSection,
 } from '../../styles/GlobalStyles';
 import { Register, Form } from './styled';
 import { toast } from 'react-toastify';
@@ -38,38 +40,42 @@ export default function Login(props) {
   }
 
   return (
-    <Section>
-      <Title>Login</Title>
-      <Form onSubmit={handleSubmit}>
-        <InputContainer>
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            value={username}
-            id="username"
-            onChange={({ target }) => setUsername(target.value)}
-          ></input>
-        </InputContainer>
-        <InputContainer>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            value={password}
-            id="password"
-            onChange={({ target }) => setPassword(target.value)}
-          ></input>
-        </InputContainer>
-        <Button disabled={isLoading}>
-          {isLoading ? 'Loading...' : 'Login'}
-        </Button>
-      </Form>
-      <Register>
-        <h2>Register</h2>
-        <p>Still don&apos;t have an account? Create your account now.</p>
-        <Link to="/login/register">
-          <Button>Create account</Button>
-        </Link>
-      </Register>
-    </Section>
+    <Animate>
+      <LoginSection>
+        <Forms>
+          <Title>Login</Title>
+          <Form onSubmit={handleSubmit}>
+            <InputContainer>
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                value={username}
+                id="username"
+                onChange={({ target }) => setUsername(target.value)}
+              ></input>
+            </InputContainer>
+            <InputContainer>
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                value={password}
+                id="password"
+                onChange={({ target }) => setPassword(target.value)}
+              ></input>
+            </InputContainer>
+            <Button disabled={isLoading}>
+              {isLoading ? 'Loading...' : 'Login'}
+            </Button>
+          </Form>
+          <Register>
+            <h2>Register</h2>
+            <p>Still don&apos;t have an account? Create your account now.</p>
+            <Link to="/login/register">
+              <Button>Create account</Button>
+            </Link>
+          </Register>
+        </Forms>
+      </LoginSection>
+    </Animate>
   );
 }

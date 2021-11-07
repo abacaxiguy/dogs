@@ -106,7 +106,7 @@ export const Button = styled.button`
   }
 `;
 
-export const Section = styled.section`
+export const Animate = styled.section`
   opacity: 0;
   transform: translateX(-40px);
   animation: animateLeft 0.5s forwards;
@@ -138,5 +138,39 @@ export const Title = styled.h1`
     left: -5px;
     border-radius: 0.2rem;
     z-index: -1;
+  }
+`;
+
+export const LoginSection = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+  gap: 2rem;
+
+  &::before {
+    content: '';
+    display: block;
+    background: url('https://dogs.origamid.dev/static/media/login.824d7d85.jpg')
+      no-repeat center center;
+    background-size: cover;
+  }
+
+  @media (max-width: 40rem) {
+    & {
+      grid-template-columns: 1fr;
+    }
+    &::before {
+      display: none;
+    }
+  }
+`;
+export const Forms = styled.div`
+  max-width: 30rem;
+  padding: 2rem;
+
+  @media (max-width: 40rem) {
+    & {
+      max-width: 100%;
+    }
   }
 `;
