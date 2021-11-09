@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { typeFirst, typeSecond, primaryDarkColor } from '../config/variables';
+import loginImg from '../assets/login.jpg';
 
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
@@ -145,13 +146,12 @@ export const LoginSection = styled.section`
   display: grid;
   grid-template-columns: 1fr 1fr;
   min-height: 100vh;
-  gap: 2rem;
+  gap: 1rem;
 
   &::before {
     content: '';
     display: block;
-    background: url('https://dogs.origamid.dev/static/media/login.824d7d85.jpg')
-      no-repeat center center;
+    background: url(${loginImg}) no-repeat center center;
     background-size: cover;
   }
 
@@ -165,8 +165,8 @@ export const LoginSection = styled.section`
   }
 `;
 export const Forms = styled.div`
-  max-width: 30rem;
-  padding: 2rem;
+  max-width: 25rem;
+  padding: 8rem 2rem 2rem 2rem;
 
   @media (max-width: 40rem) {
     & {
