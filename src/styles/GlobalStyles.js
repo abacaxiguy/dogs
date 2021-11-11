@@ -166,7 +166,8 @@ export const LoginSection = styled.section`
 `;
 export const Forms = styled.div`
   max-width: 25rem;
-  padding: 8rem 2rem 2rem 2rem;
+  padding: 2rem;
+  padding-top: 4rem;
 
   @media (max-width: 40rem) {
     & {

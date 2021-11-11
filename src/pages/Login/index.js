@@ -21,10 +21,7 @@ export default function Login(props) {
 
   const prevPath = get(props, 'location.state.prevPath', '/');
 
-  const isLoading = useSelector((state) => {
-    console.log(state);
-    return state.auth.isLoading;
-  });
+  const isLoading = useSelector((state) => state.auth.isLoading);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -33,7 +30,7 @@ export default function Login(props) {
     e.preventDefault();
 
     if (!username || !password) {
-      toast.error('Invalid fields!');
+      return toast.error('Invalid fields!');
     }
 
     dispatch(actions.loginRequest({ username, password, prevPath }));

@@ -14,21 +14,11 @@ export default function MyRoute({
 
   if (isClosed && !isLoggedIn) {
     toast.error('Login required');
-    return (
-      <Redirect
-        to={{ pathname: '/login', state: { prevPath: rest.location.pathname } }}
-      />
-    );
+    return <Redirect to={{ pathname: '/login' }} />;
   }
 
   if (isLoggedOff && isLoggedIn) {
-    toast.error("You're already logged in");
-
-    return (
-      <Redirect
-        to={{ pathname: '/', state: { prevPath: rest.location.pathname } }}
-      />
-    );
+    return <Redirect to={{ pathname: '/' }} />;
   }
 
   return <Route {...rest} component={Component} />;
