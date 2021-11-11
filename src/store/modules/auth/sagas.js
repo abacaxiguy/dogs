@@ -35,7 +35,7 @@ function* registerRequest({ payload }) {
 
     history.push('/account');
   } catch (e) {
-    const errors = get(e, 'response.data.error', []);
+    const errors = get(e, 'response.data.errors', []);
 
     if (errors.length > 0) {
       errors.map((error) => toast.error(error));
@@ -47,7 +47,18 @@ function* registerRequest({ payload }) {
   }
 }
 
+function* registerSuccess({ payload }) {
+  const { username, password } = payload;
+
+  try {
+    yield put(actions.loginRequest({ username, password }));
+  } catch (e) {
+    toast.error('Unknown error.');
+  }
+}
+
 export default all([
   takeLatest(types.LOGIN_REQUEST, loginRequest),
   takeLatest(types.REGISTER_REQUEST, registerRequest),
+  takeLatest(types.REGISTER_SUCCESS, registerSuccess),
 ]);

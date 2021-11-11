@@ -13,8 +13,16 @@ import {
 } from '../../styles/GlobalStyles';
 import { Form } from '../Login/styled';
 import * as actions from '../../store/modules/auth/actions';
+import history from '../../services/history';
 
 export default function Register() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  if (isLoggedIn) {
+    toast.error('You are already logged in.');
+    history.push('/');
+  }
+
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.auth.isLoading);
 

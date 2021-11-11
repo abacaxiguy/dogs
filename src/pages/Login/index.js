@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { get } from 'lodash';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import * as actions from '../../store/modules/auth/actions';
 import {
@@ -14,14 +13,11 @@ import {
   LoginSection,
 } from '../../styles/GlobalStyles';
 import { Register, Form } from './styled';
-import { toast } from 'react-toastify';
 
-export default function Login(props) {
-  const dispatch = useDispatch();
-
-  const prevPath = get(props, 'location.state.prevPath', '/');
-
+export default function Login() {
   const isLoading = useSelector((state) => state.auth.isLoading);
+
+  const dispatch = useDispatch();
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -33,7 +29,7 @@ export default function Login(props) {
       return toast.error('Invalid fields!');
     }
 
-    dispatch(actions.loginRequest({ username, password, prevPath }));
+    dispatch(actions.loginRequest({ username, password }));
   }
 
   return (
