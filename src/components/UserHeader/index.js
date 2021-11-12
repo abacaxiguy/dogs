@@ -4,9 +4,9 @@ import { toast } from 'react-toastify';
 
 import { Head, Nav } from './styled';
 import { ReactComponent as MyPhotos } from '../../assets/feed.svg';
-import { ReactComponent as EditProfile } from '../../assets/estatisticas.svg';
-import { ReactComponent as Create } from '../../assets/adicionar.svg';
-import { ReactComponent as Logout } from '../../assets/sair.svg';
+import { ReactComponent as EditProfile } from '../../assets/edit.svg';
+import { ReactComponent as Create } from '../../assets/create.svg';
+import { ReactComponent as Logout } from '../../assets/logout.svg';
 import { Button, Title } from '../../styles/GlobalStyles';
 import * as actions from '../../store/modules/auth/actions';
 import history from '../../services/history';
