@@ -7,6 +7,8 @@ import Page404 from '../pages/Page404';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Account from '../pages/Account';
+import Edit from '../pages/Edit';
+import Create from '../pages/Create';
 
 export default function Routes() {
   return (
@@ -14,6 +16,8 @@ export default function Routes() {
       <MyRoute exact path="/" component={Photos} />
       <MyRoute exact path="/login" isLoggedOff component={Login} />
       <MyRoute exact path="/account" isClosed component={Account} />
+      <MyRoute exact path="/account/create" isClosed component={Create} />
+      <MyRoute exact path="/account/edit" isClosed component={Edit} />
       <MyRoute exact path="/login/register" isLoggedOff component={Register} />
       <MyRoute path="*" component={Page404} />
     </Switch>
