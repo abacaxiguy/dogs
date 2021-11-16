@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 
-import { Head, Nav } from './styled';
+import { Head, Nav, MobileButton, MobileNav } from './styled';
 import { ReactComponent as MyPhotos } from '../../assets/feed.svg';
 import { ReactComponent as EditProfile } from '../../assets/edit.svg';
 import { ReactComponent as Create } from '../../assets/create.svg';
@@ -14,8 +14,11 @@ import { NavLink, useLocation } from 'react-router-dom';
 
 export default function UserHeader() {
   const [mobile, setMobile] = useState(null);
+  const [mobileMenu, setMobileMenu] = useState(true);
   const [title, setTitle] = useState('');
+  const { pathname } = useLocation();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     setTitle(
@@ -27,14 +30,22 @@ export default function UserHeader() {
         ? 'Post your photo'
         : 'My account',
     );
-  }, [location]);
+    function watchResize() {
+      const { matches } = window.matchMedia('(max-width: 40rem)');
+      setMobile(matches);
+    }
+    watchResize();
+    setMobileMenu(false);
+    window.addEventListener('resize', watchResize);
 
-  const dispatch = useDispatch();
+    return () => {
+      window.removeEventListener('resize', watchResize);
+    };
+  }, [location, pathname]);
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(actions.loginFailure());
-    setMobile(false);
     toast.info('You made logout successfully.');
     return history.push('/');
   };
@@ -42,24 +53,52 @@ export default function UserHeader() {
   return (
     <Head>
       <Title>{title}</Title>
-      <Nav>
-        <NavLink to="/account" exact={true}>
-          <MyPhotos />
-          {mobile && 'My Photos'}
-        </NavLink>
-        <NavLink to="/account/edit">
-          <EditProfile />
-          {mobile && 'Edit Profile'}
-        </NavLink>
-        <NavLink to="/account/create">
-          <Create />
-          {mobile && 'Create Post'}
-        </NavLink>
-        <button onClick={handleLogout}>
-          <Logout />
-          {mobile && 'Logout'}
-        </button>
-      </Nav>
+      {mobile && (
+        <MobileButton
+          aria-label="Menu"
+          isActive={mobileMenu}
+          onClick={() => setMobileMenu(!mobileMenu)}
+        ></MobileButton>
+      )}
+      {!mobile ? (
+        <Nav>
+          <NavLink to="/account" exact={true}>
+            <MyPhotos />
+            {mobile && 'My Photos'}
+          </NavLink>
+          <NavLink to="/account/edit">
+            <EditProfile />
+            {mobile && 'Edit Profile'}
+          </NavLink>
+          <NavLink to="/account/create">
+            <Create />
+            {mobile && 'Create Post'}
+          </NavLink>
+          <button onClick={handleLogout}>
+            <Logout />
+            {mobile && 'Logout'}
+          </button>
+        </Nav>
+      ) : (
+        <MobileNav isActive={mobileMenu}>
+          <NavLink to="/account" exact={true}>
+            <MyPhotos />
+            {mobile && 'My Photos'}
+          </NavLink>
+          <NavLink to="/account/edit">
+            <EditProfile />
+            {mobile && 'Edit Profile'}
+          </NavLink>
+          <NavLink to="/account/create">
+            <Create />
+            {mobile && 'Create Post'}
+          </NavLink>
+          <button onClick={handleLogout}>
+            <Logout />
+            {mobile && 'Logout'}
+          </button>
+        </MobileNav>
+      )}
     </Head>
   );
 }
