@@ -43,14 +43,7 @@ export const Nav = styled.nav`
     border-color: #fb1;
   }
 
-  a.active:not([href='/account/edit']) svg > * {
-    fill: #fb1;
-  }
-
-  a.active[href='/account/edit'] svg g path {
-    stroke: #fb1;
-  }
-  a.active[href='/account/edit'] svg g path[fill-rule='evenodd'] {
+  a.active svg > * {
     fill: #fb1;
   }
 `;
@@ -96,24 +89,20 @@ export const MobileNav = styled.nav`
   }
 
   a[href='/account/edit'] svg {
-    margin-left: -4px;
+    margin-left: 4px;
   }
 
-  a:not([href='/account/edit']):hover svg > *,
+  a:hover svg > *,
   button:hover svg > * {
-    fill: #fb1;
-  }
-
-  a[href='/account/edit']:hover svg g path {
-    stroke: #fb1;
-  }
-
-  a[href='/account/edit']:hover svg g path[fill-rule='evenodd'] {
     fill: #fb1;
   }
 
   svg {
     margin-right: 0.5rem;
+  }
+
+  a.active svg > * {
+    fill: #fb1;
   }
 `;
 

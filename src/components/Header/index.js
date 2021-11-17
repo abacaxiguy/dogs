@@ -1,8 +1,7 @@
 import React from 'react';
-import { FaUserAlt } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 
-import { Head, Nav, Logo, Login, Account } from './styled';
+import { Head, Nav, Logo, Login } from './styled';
 import { ReactComponent as Dogs } from '../../assets/dogs.svg';
 
 export default function Header() {
@@ -16,13 +15,9 @@ export default function Header() {
           <Dogs />
         </Logo>
         {!isLoggedIn ? (
-          <Login to="/login">
-            Login <FaUserAlt />
-          </Login>
+          <Login to="/login">Login / Register</Login>
         ) : (
-          <Account to="/account">
-            {username} <FaUserAlt />
-          </Account>
+          <Login to="/account">{username}</Login>
         )}
       </Nav>
     </Head>

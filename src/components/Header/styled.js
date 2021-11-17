@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
 import { primaryDarkColor } from '../../config/variables';
+import userImg from '../../assets/user.svg';
 
 export const Head = styled.header`
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.1);
@@ -27,8 +29,17 @@ export const Logo = styled(Link)`
 
 export const Login = styled(Link)`
   color: ${primaryDarkColor};
-`;
+  display: flex;
+  align-items: center;
 
-export const Account = styled(Link)`
-  color: ${primaryDarkColor};
+  &::after {
+    content: '';
+    display: inline-block;
+    width: 14px;
+    height: 17px;
+    background: url(${userImg}) no-repeat center center;
+    margin-left: 0.5rem;
+    position: relative;
+    top: -1px;
+  }
 `;
