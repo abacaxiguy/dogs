@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
 import { isInteger } from 'lodash';
@@ -13,8 +14,10 @@ import { PhotoCreate } from './styled';
 import UserHeader from '../../components/UserHeader';
 import axios from '../../services/axios';
 import history from '../../services/history';
+import * as actions from '../../store/modules/auth/actions';
 
 export default function Create() {
+  const dispatch = useDispatch();
   const [isLoading, setIsLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [weight, setWeight] = useState('');
@@ -76,7 +79,13 @@ export default function Create() {
       setIsLoading(false);
     } catch (err) {
       setIsLoading(false);
+      const { status } = get(err, 'response', '');
       const errors = get(err, 'response.data.errors', []);
+
+      if (status === 401) {
+        dispatch(actions.loginFailure());
+        return toast.error('Login required.');
+      }
 
       if (errors.length > 0) {
         return errors.map((error) => toast.error(error));
@@ -112,7 +121,7 @@ export default function Create() {
                 type="number"
                 value={weight}
                 id="weight"
-                onChange={({ target }) => setWeight(Number(target.value))}
+                onChange={({ target }) => setWeight(target.value)}
               ></input>
             </InputContainer>
             <InputContainer>
@@ -121,7 +130,7 @@ export default function Create() {
                 type="number"
                 value={age}
                 id="age"
-                onChange={({ target }) => setAge(Number(target.value))}
+                onChange={({ target }) => setAge(target.value)}
               ></input>
             </InputContainer>
             <input type="file" id="img" onChange={handleChangeImg}></input>
