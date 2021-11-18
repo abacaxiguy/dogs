@@ -1,3 +1,12 @@
 import styled from 'styled-components';
 
-export const Form = styled.form``;
+export const PhotoCreate = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+
+  input[type='file'] {
+    margin-bottom: 1rem;
+  }
+`;
