@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
-import { isInteger } from 'lodash';
+import { isInt, isFloat } from 'validator';
 
 import {
   Container,
@@ -32,12 +32,12 @@ export default function Create() {
       toast.error('Title must be between 3 and 30 characters.');
     }
 
-    if (!isInteger(age)) {
+    if (!isInt(age) || age < 1) {
       formErrors = true;
       toast.error('Age has to be a Integer.');
     }
 
-    if (!isInteger(weight)) {
+    if (!isFloat(weight) || weight < 0.1) {
       formErrors = true;
       toast.error('Weight has to be a Integer.');
     }
@@ -120,6 +120,7 @@ export default function Create() {
               <input
                 type="number"
                 value={weight}
+                step="0.1"
                 id="weight"
                 onChange={({ target }) => setWeight(target.value)}
               ></input>
