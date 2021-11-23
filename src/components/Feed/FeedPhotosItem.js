@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 
 import { Photo } from './styled';
 
-export default function FeedPhotosItem({ photo }) {
+export default function FeedPhotosItem({ photo, setModalPhoto }) {
+  function handleClick() {
+    setModalPhoto(photo);
+  }
+
   return (
-    <Photo>
+    <Photo onClick={handleClick}>
       <img src={photo.url} alt={photo.title} />
       <span>{photo.views}</span>
     </Photo>
@@ -18,4 +22,5 @@ FeedPhotosItem.propTypes = {
     title: PropTypes.string.isRequired,
     views: PropTypes.number.isRequired,
   }).isRequired,
+  setModalPhoto: PropTypes.func.isRequired,
 };

@@ -4,6 +4,8 @@ import ViewUrl from '../../assets/view.svg';
 
 export const MainContainer = styled.div``;
 
+export const Modal = styled.div``;
+
 export const PhotosContainer = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);

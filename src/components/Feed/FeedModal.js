@@ -1,9 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 
-export default function FeedModal() {
+import { Modal } from './styled';
+import axios from '../../services/axios';
+
+export default function FeedModal({ photo }) {
+  const [photoData, setPhotoData] = useState([]);
+
+  useEffect(() => {
+    async function getData() {
+      const response = await axios.get(`/photos/${photo.id}`);
+      setPhotoData(response.data);
+    }
+
+    getData();
+  }, [photo]);
+
   return (
-    <>
-      <div>FeedModal</div>
-    </>
+    <Modal>
+      <div>{photoData.title}</div>
+    </Modal>
   );
 }
+
+FeedModal.propTypes = {
+  photo: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  }).isRequired,
+};
