@@ -7,9 +7,6 @@ import loginImg from '../assets/login.jpg';
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
 
-  *{
-    font-family: ${typeFirst};
-  }
 
   body{
     outline: none;
@@ -17,6 +14,7 @@ export default createGlobalStyle`
     margin: 0px;
     box-sizing: border-box;
     color: ${primaryDarkColor};
+    font-family: ${typeFirst};
   }
 
   h1, h2, h3, h4, p{
