@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 import ViewUrl from '../../assets/view.svg';
+import ViewBlackUrl from '../../assets/view-black.svg';
 
 export const MainContainer = styled.div`
   margin-top: 2rem;
@@ -31,6 +32,16 @@ export const PhotoContent = styled.div`
   grid-template-columns: 36rem 20rem;
   grid-template-rows: auto 1fr auto;
   overflow: hidden;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: scaleUp 0.4s forwards;
+
+  @keyframes scaleUp {
+    to {
+      opacity: initial;
+      transform: initial;
+    }
+  }
 
   @media (max-width: 64rem) {
     height: auto;
@@ -50,9 +61,54 @@ export const PhotoImg = styled.div`
 
 export const Details = styled.div`
   padding: 2rem 2rem 0 2rem;
+
+  ul {
+    display: flex;
+    font-size: 1.125rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  li {
+    margin-right: 2rem;
+  }
+
+  li:before {
+    content: '';
+    display: inline-block;
+    height: 20px;
+    margin-right: 0.5rem;
+    margin-top: 5px;
+    position: relative;
+    top: 3px;
+    width: 2px;
+    background: #333;
+  }
 `;
 
-export const Views = styled.span``;
+export const Author = styled.p`
+  opacity: 0.5;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  a:hover {
+    text-decoration: underline;
+  }
+`;
+
+export const Views = styled.span`
+  &:before {
+    display: inline-block;
+    content: '';
+    width: 16px;
+    height: 10px;
+    margin-right: 0.5rem;
+    background: url(${ViewBlackUrl});
+  }
+`;
 
 export const PhotosContainer = styled.ul`
   display: grid;
