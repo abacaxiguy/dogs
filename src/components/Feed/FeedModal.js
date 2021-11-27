@@ -13,6 +13,7 @@ import axios from '../../services/axios';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
 import { Title } from '../../styles/GlobalStyles';
+import Comments from './Comments';
 
 export default function FeedModal({ photo, setModalPhoto }) {
   const [photoData, setPhotoData] = useState([]);
@@ -30,7 +31,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
     getData();
   }, [photo, photoData]);
 
-  const { Comments } = photoData;
+  const { comments } = photoData;
 
   function handleOutsideClick(e) {
     if (e.target === e.currentTarget) setModalPhoto(null);
@@ -60,6 +61,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
             </ul>
           </div>
         </Details>
+        <Comments id={photoData.id} comments={comments} />
       </PhotoContent>
     </Modal>
   );
