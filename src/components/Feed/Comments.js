@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import CommentsForm from './CommentsForm';
+import { CommentContainer } from './styled';
 
 export default function Comments(props) {
+  const [comments, setComments] = useState(() => props.comments);
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-
-  return <div>{isLoggedIn && <CommentsForm id={props.id} />}</div>;
+  return (
+    <>
+      <CommentContainer>
+        {comments !== undefined &&
+          comments.map((comment) => (
+            <li key={comment.id}>
+              <b>{comment.comment_author}: </b>
+              <span>{comment.comment_content}</span>
+            </li>
+          ))}
+      </CommentContainer>
+      {isLoggedIn && <CommentsForm id={props.id} setComments={setComments} />}
+    </>
+  );
 }
 
 Comments.propTypes = {
   id: PropTypes.number.isRequired,
+  comments: PropTypes.array.isRequired,
 };

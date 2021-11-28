@@ -6,7 +6,7 @@ import { InputContainer } from '../../styles/GlobalStyles';
 import { ReactComponent as Send } from '../../assets/send.svg';
 import axios from '../../services/axios';
 
-export default function CommentsForm({ id }) {
+export default function CommentsForm({ id, setComments }) {
   const [comment, setComment] = useState('');
 
   const handleSubmit = async (e) => {
@@ -17,14 +17,14 @@ export default function CommentsForm({ id }) {
     }
 
     try {
-      const response = await axios.post(`/comments/${id}`, {
+      await axios.post(`/comments/${id}`, {
         comment_content: comment,
       });
 
-      console.log(response);
-
       toast.success('Comment added successfully');
+
       setComment('');
+      setComments((comments) => [...comments, comment]);
     } catch (e) {
       e.response.data.errors.map((err) => toast.error(err));
     }
@@ -50,4 +50,5 @@ export default function CommentsForm({ id }) {
 
 CommentsForm.propTypes = {
   id: PropTypes.number.isRequired,
+  setComments: PropTypes.func.isRequired,
 };

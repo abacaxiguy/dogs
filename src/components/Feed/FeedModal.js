@@ -31,7 +31,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
     getData();
   }, [photo, photoData]);
 
-  const { comments } = photoData;
+  const comments = photoData.Comments;
 
   function handleOutsideClick(e) {
     if (e.target === e.currentTarget) setModalPhoto(null);
@@ -48,7 +48,6 @@ export default function FeedModal({ photo, setModalPhoto }) {
             <Author>
               <Link to={`/profile/${photoData.author}`}>
                 @{photoData.author}
-                {Comments}
               </Link>
               <Views>{photoData.views}</Views>
             </Author>

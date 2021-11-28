@@ -172,3 +172,5 @@ export const Photo = styled.li`
     opacity: 1;
   }
 `;
+
+export const CommentContainer = styled.ul``;
