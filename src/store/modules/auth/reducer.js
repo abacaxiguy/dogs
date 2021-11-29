@@ -22,7 +22,6 @@ export default function (state = initialState, action) {
     case types.LOGIN_FAILURE: {
       delete axios.defaults.headers.Authorization;
       const newState = { ...initialState };
-      newState.isLoggedIn = false;
       newState.isLoading = false;
       return newState;
     }
