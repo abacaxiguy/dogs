@@ -17,9 +17,18 @@ export default function CommentsForm({ id, setComments }) {
     }
 
     try {
-      const newComment = await axios.post(`/comments/${id}`, {
-        comment_content: comment,
-      });
+      const newComment = await axios.post(
+        `/comments/${id}`,
+        {
+          comment_content: comment,
+        },
+        {
+          headers: {
+            ...axios.defaults.headers,
+            Authorization: axios.defaults.headers.Authorization,
+          },
+        },
+      );
 
       console.log(newComment);
 

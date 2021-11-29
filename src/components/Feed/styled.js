@@ -197,6 +197,10 @@ export const CommentContainer = styled.ul`
     margin-bottom: 0.5rem;
     line-height: 1.2;
   }
+
+  @media (max-width: 40rem) {
+    min-height: 20rem;
+  }
 `;
 
 export const Form = styled.form`

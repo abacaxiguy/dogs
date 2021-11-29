@@ -18,8 +18,8 @@ import Loading from '../Loading';
 
 export default function FeedModal({ photo, setModalPhoto }) {
   const [photoData, setPhotoData] = useState([]);
+  const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const comments = photoData.Comments;
 
   useEffect(() => {
     async function getData() {
@@ -27,6 +27,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
         setIsLoading(true);
         const response = await axios.get(`/photos/${photo.id}`);
         setPhotoData(response.data);
+        setComments(response.data.Comments);
         setIsLoading(false);
       } catch (e) {
         toast.error(e);
@@ -34,7 +35,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
       }
     }
 
-    return () => getData();
+    getData();
   }, [photo]);
 
   function handleOutsideClick(e) {
@@ -66,7 +67,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
               </ul>
             </div>
           </Details>
-          <Comments id={photoData.id} comments={comments} />
+          <Comments id={photo.id} comments={comments.reverse()} />
         </PhotoContent>
       </Modal>
     </>

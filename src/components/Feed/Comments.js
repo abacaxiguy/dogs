@@ -1,19 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 import CommentsForm from './CommentsForm';
 import { CommentContainer } from './styled';
 
 export default function Comments({ comments, id }) {
-  const [commentList, setCommentList] = useState(comments);
+  const [commentList, setCommentList] = useState([]);
   const commentSection = useRef(null);
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  useEffect(() => {
+    setCommentList(comments.reverse());
+  }, [comments]);
 
   useEffect(() => {
     commentSection.current.scrollTop = commentSection.current.scrollHeight;
   }, [commentList]);
 
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   return (
     <>
       <CommentContainer ref={commentSection}>
