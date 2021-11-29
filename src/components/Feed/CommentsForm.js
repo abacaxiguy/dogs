@@ -5,33 +5,39 @@ import { toast } from 'react-toastify';
 import { InputContainer } from '../../styles/GlobalStyles';
 import { ReactComponent as Send } from '../../assets/send.svg';
 import axios from '../../services/axios';
+import { Form } from './styled';
 
 export default function CommentsForm({ id, setComments }) {
   const [comment, setComment] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(comment.length);
     if (comment.length < 1 || comment.length > 50) {
       return toast.error('Comment invalid');
     }
 
     try {
-      await axios.post(`/comments/${id}`, {
+      const newComment = await axios.post(`/comments/${id}`, {
         comment_content: comment,
       });
+
+      console.log(newComment);
 
       toast.success('Comment added successfully');
 
       setComment('');
-      setComments((comments) => [...comments, comment]);
+      setComments((comments) => {
+        return comments !== undefined
+          ? [...comments, newComment.data]
+          : [newComment.data];
+      });
     } catch (e) {
-      e.response.data.errors.map((err) => toast.error(err));
+      console.log(e.response);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <InputContainer>
         <input
           id="comment"
@@ -44,7 +50,7 @@ export default function CommentsForm({ id, setComments }) {
       <button>
         <Send />
       </button>
-    </form>
+    </Form>
   );
 }
 

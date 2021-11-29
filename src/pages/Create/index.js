@@ -63,7 +63,6 @@ export default function Create() {
 
     try {
       setIsLoading(true);
-      console.log(formData);
       await axios.post('/photos/', formData, {
         headers: {
           ...axios.defaults.headers,

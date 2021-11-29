@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import ViewUrl from '../../assets/view.svg';
 import ViewBlackUrl from '../../assets/view-black.svg';
+import CommentsUrl from '../../assets/comments.svg';
 
 export const MainContainer = styled.div`
   margin-top: 2rem;
@@ -142,11 +143,7 @@ export const Photo = styled.li`
   overflow: hidden;
   cursor: pointer;
 
-  img {
-    grid-area: 1/1;
-  }
-
-  span {
+  span.spanWrapper {
     background: rgba(0, 0, 0, 0.3);
     color: white;
     grid-area: 1/1;
@@ -157,15 +154,11 @@ export const Photo = styled.li`
     display: flex;
     opacity: 0;
     transition: opacity 0.3s;
+    gap: 0.8rem;
   }
 
-  span::before {
-    width: 16px;
-    height: 10px;
-    content: '';
-    display: inline-block;
-    margin-right: 0.25rem;
-    background: url(${ViewUrl}) no-repeat;
+  img {
+    grid-area: 1/1;
   }
 
   &:hover span {
@@ -173,4 +166,81 @@ export const Photo = styled.li`
   }
 `;
 
-export const CommentContainer = styled.ul``;
+export const ViewsSpan = styled.span`
+  &::before {
+    width: 16px;
+    height: 10px;
+    content: '';
+    display: inline-block;
+    margin-right: 0.25rem;
+    background: url(${ViewUrl}) no-repeat;
+  }
+`;
+
+export const CommentsSpan = styled.span`
+  &::before {
+    width: 16px;
+    height: 16px;
+    content: '';
+    display: inline-block;
+    margin-right: 0.25rem;
+    background: url(${CommentsUrl}) no-repeat;
+  }
+`;
+
+export const CommentContainer = styled.ul`
+  overflow-y: auto;
+  word-break: break-word;
+  padding: 0 2rem;
+
+  li {
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+`;
+
+export const Form = styled.form`
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  margin: 1rem 1rem 1.4rem 1rem;
+
+  div {
+    margin-bottom: 0;
+  }
+
+  input {
+    box-sizing: border-box;
+  }
+
+  button {
+    border: none;
+    cursor: pointer;
+    color: #333;
+    background: transparent;
+    font-size: 1rem;
+    padding: 0.2rem 1rem 0 1rem;
+    overflow: hidden;
+    outline: none;
+  }
+
+  button:focus svg path,
+  button:hover svg path {
+    fill: #fea;
+    stroke: #fb1;
+  }
+
+  button:focus svg g,
+  button:hover svg g {
+    animation: woof 0.6s infinite;
+  }
+
+  @keyframes woof {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+`;
