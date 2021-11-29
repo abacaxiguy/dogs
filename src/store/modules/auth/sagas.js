@@ -24,6 +24,13 @@ function* loginRequest({ payload }) {
   }
 }
 
+function persistRehydrate({ payload }) {
+  const token = get(payload, 'auth.token', '');
+  if (!token) return;
+
+  axios.defaults.headers.Authorization = `Bearer ${token}`;
+}
+
 function* registerRequest({ payload }) {
   const { username, email, password } = payload;
 
@@ -59,6 +66,7 @@ function* registerSuccess({ payload }) {
 
 export default all([
   takeLatest(types.LOGIN_REQUEST, loginRequest),
+  takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
   takeLatest(types.REGISTER_REQUEST, registerRequest),
   takeLatest(types.REGISTER_SUCCESS, registerSuccess),
 ]);

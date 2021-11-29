@@ -17,18 +17,9 @@ export default function CommentsForm({ id, setComments }) {
     }
 
     try {
-      const newComment = await axios.post(
-        `/comments/${id}`,
-        {
-          comment_content: comment,
-        },
-        {
-          headers: {
-            ...axios.defaults.headers,
-            Authorization: axios.defaults.headers.Authorization,
-          },
-        },
-      );
+      const newComment = await axios.post(`/comments/${id}`, {
+        comment_content: comment,
+      });
 
       console.log(newComment);
 
@@ -41,7 +32,7 @@ export default function CommentsForm({ id, setComments }) {
           : [newComment.data];
       });
     } catch (e) {
-      console.log(e.response);
+      console.log(axios.defaults.headers.Authorization);
     }
   };
 
