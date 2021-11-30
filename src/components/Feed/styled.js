@@ -18,10 +18,6 @@ export const Modal = styled.div`
   display: flex;
   z-index: 1000;
   padding: 2rem auto;
-
-  @media (max-width: 40rem) {
-    padding: 2rem calc(2rem + 15px) 2rem 2rem;
-  }
 `;
 
 export const PhotoContent = styled.div`
@@ -49,6 +45,14 @@ export const PhotoContent = styled.div`
     max-height: calc(100vh - 4rem);
     overflow-y: auto;
     grid-template-columns: minmax(20rem, 40rem);
+  }
+
+  @media (max-width: 40rem) {
+    margin: auto 2rem;
+  }
+
+  @media (max-width: 20rem) {
+    margin: auto 0.6rem;
   }
 `;
 
@@ -198,8 +202,8 @@ export const CommentContainer = styled.ul`
     line-height: 1.2;
   }
 
-  @media (max-width: 40rem) {
-    min-height: 20rem;
+  @media (max-width: 64rem) {
+    min-height: 10rem;
   }
 `;
 
