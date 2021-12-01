@@ -17,6 +17,7 @@ import { Title } from '../../styles/GlobalStyles';
 import Comments from './Comments';
 import Loading from '../Loading';
 import { useSelector } from 'react-redux';
+import Image from '../Image';
 
 export default function FeedModal({ photo, setModalPhoto }) {
   const [photoData, setPhotoData] = useState([]);
@@ -62,7 +63,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
       <Modal onClick={handleOutsideClick}>
         <PhotoContent>
           <PhotoImg>
-            <img src={photoData.url} alt={photoData.title} />
+            <Image src={photoData.url} alt={photoData.title} />
           </PhotoImg>
           <Details>
             <div>

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { Photo, ViewsSpan, CommentsSpan } from './styled';
+import Image from '../Image';
 
 export default function FeedPhotosItem({ photo, setModalPhoto }) {
   function handleClick() {
@@ -10,7 +11,7 @@ export default function FeedPhotosItem({ photo, setModalPhoto }) {
 
   return (
     <Photo onClick={handleClick}>
-      <img src={photo.url} alt={photo.title} />
+      <Image src={photo.url} alt={photo.title} />
       <span className="spanWrapper">
         <CommentsSpan>{photo.comment_count}</CommentsSpan>
         <ViewsSpan>{photo.views}</ViewsSpan>

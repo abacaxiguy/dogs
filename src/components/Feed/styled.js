@@ -162,7 +162,7 @@ export const Photo = styled.li`
     gap: 0.8rem;
   }
 
-  img {
+  div {
     grid-area: 1/1;
   }
 
