@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ViewUrl from '../../assets/view.svg';
 import ViewBlackUrl from '../../assets/view-black.svg';
 import CommentsUrl from '../../assets/comments.svg';
+import { typeFirst } from '../../config/variables';
 
 export const MainContainer = styled.div`
   margin-top: 2rem;
@@ -250,5 +251,24 @@ export const Form = styled.form`
     to {
       opacity: 1;
     }
+  }
+`;
+
+export const Delete = styled.button`
+  background: #ddd;
+  padding: 0.3rem 0.6rem;
+  line-height: 1;
+  border: 1px solid transparent;
+  font-size: 0.875rem;
+  font-family: ${typeFirst};
+  cursor: pointer;
+  border-radius: 0.4rem;
+  transition: 0.4s;
+
+  &:hover {
+    outline: none;
+    background: white;
+    box-shadow: 0 0 0 3px #eee;
+    border-color: #333;
   }
 `;

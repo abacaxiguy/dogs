@@ -8,6 +8,7 @@ import {
   Details,
   Views,
   Author,
+  Delete,
 } from './styled';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';
@@ -15,11 +16,14 @@ import { Link } from 'react-router-dom';
 import { Title } from '../../styles/GlobalStyles';
 import Comments from './Comments';
 import Loading from '../Loading';
+import { useSelector } from 'react-redux';
 
 export default function FeedModal({ photo, setModalPhoto }) {
   const [photoData, setPhotoData] = useState([]);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const user = useSelector((state) => state.auth.user.username);
 
   useEffect(() => {
     async function getData() {
@@ -42,6 +46,16 @@ export default function FeedModal({ photo, setModalPhoto }) {
     if (e.target === e.currentTarget) setModalPhoto(null);
   }
 
+  async function handleDelete() {
+    try {
+      await axios.delete(`/photos/${photoData.id}`);
+      toast.success('Photo deleted successfully');
+      setInterval(() => window.location.reload(), 1000);
+    } catch (e) {
+      toast.error(e.response.data);
+    }
+  }
+
   return (
     <>
       <Loading isLoading={isLoading} />
@@ -53,9 +67,14 @@ export default function FeedModal({ photo, setModalPhoto }) {
           <Details>
             <div>
               <Author>
-                <Link to={`/profile/${photoData.author}`}>
-                  @{photoData.author}
-                </Link>
+                {user === photoData.author ? (
+                  <Delete onClick={handleDelete}>Delete</Delete>
+                ) : (
+                  <Link to={`/profile/${photoData.author}`}>
+                    `@${photoData.author}`
+                  </Link>
+                )}
+
                 <Views>{photoData.views}</Views>
               </Author>
               <Title>
