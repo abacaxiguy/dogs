@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Img = styled.img`
-  max-width: 100%;
+  min-width: -webkit-fill-available;
   display: block;
   grid-area: 1/1;
   opacity: 0;

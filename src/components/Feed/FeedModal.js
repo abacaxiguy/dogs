@@ -72,7 +72,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
                   <Delete onClick={handleDelete}>Delete</Delete>
                 ) : (
                   <Link to={`/profile/${photoData.author}`}>
-                    `@${photoData.author}`
+                    @{photoData.author}
                   </Link>
                 )}
 

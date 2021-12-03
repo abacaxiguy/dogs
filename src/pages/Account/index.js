@@ -8,7 +8,7 @@ export default function Account() {
   return (
     <Container>
       <UserHeader />
-      <Feed />
+      <Feed isFeedAccount={true} />
     </Container>
   );
 }

@@ -6,10 +6,13 @@ import FeedPhotosItem from './FeedPhotosItem';
 import { PhotosContainer } from './styled';
 import { Animate } from '../../styles/GlobalStyles';
 import Loading from '../Loading';
+import { useSelector } from 'react-redux';
 
-export default function FeedPhotos({ setModalPhoto }) {
+export default function FeedPhotos({ setModalPhoto, isFeedAccount }) {
   const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const user = useSelector((state) => state.auth.user.username);
 
   useEffect(() => {
     async function getData() {
@@ -27,13 +30,24 @@ export default function FeedPhotos({ setModalPhoto }) {
       <Loading isLoading={isLoading} />
       <Animate>
         <PhotosContainer>
-          {photos.map((photo) => (
-            <FeedPhotosItem
-              key={photo.id}
-              photo={photo}
-              setModalPhoto={setModalPhoto}
-            />
-          ))}
+          {!isFeedAccount
+            ? photos.map((photo) => (
+                <FeedPhotosItem
+                  key={photo.id}
+                  photo={photo}
+                  setModalPhoto={setModalPhoto}
+                />
+              ))
+            : photos.map((photo) => {
+                if (photo.author === user)
+                  return (
+                    <FeedPhotosItem
+                      key={photo.id}
+                      photo={photo}
+                      setModalPhoto={setModalPhoto}
+                    />
+                  );
+              })}
         </PhotosContainer>
       </Animate>
     </>
@@ -42,4 +56,5 @@ export default function FeedPhotos({ setModalPhoto }) {
 
 FeedPhotos.propTypes = {
   setModalPhoto: PropTypes.func.isRequired,
+  isFeedAccount: PropTypes.bool.isRequired,
 };
