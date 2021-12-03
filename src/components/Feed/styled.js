@@ -134,6 +134,11 @@ export const Photo = styled.li`
   &:nth-child(2) {
     grid-column: 2 / 4;
     grid-row: span 2;
+    min-width: -webkit-fill-available;
+  }
+
+  &:nth-child(2) img {
+    min-width: -webkit-fill-available;
   }
 
   @media (max-width: 40rem) {
