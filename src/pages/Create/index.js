@@ -10,7 +10,7 @@ import {
   Button,
   InputContainer,
 } from '../../styles/GlobalStyles';
-import { PhotoCreate } from './styled';
+import { PhotoCreate, Preview } from './styled';
 import UserHeader from '../../components/UserHeader';
 import axios from '../../services/axios';
 import history from '../../services/history';
@@ -96,6 +96,7 @@ export default function Create() {
 
   function handleChangeImg({ target }) {
     setSrc({
+      preview: URL.createObjectURL(target.files[0]),
       raw: target.files[0],
     });
   }
@@ -138,6 +139,13 @@ export default function Create() {
               {isLoading ? 'Loading...' : 'Send'}
             </Button>
           </form>
+          <div>
+            {src.preview && (
+              <Preview
+                style={{ backgroundImage: `url('${src.preview}')` }}
+              ></Preview>
+            )}
+          </div>
         </PhotoCreate>
       </Animate>
     </Container>
