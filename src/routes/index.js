@@ -9,6 +9,7 @@ import Register from '../pages/Register';
 import Account from '../pages/Account';
 import Edit from '../pages/Edit';
 import Create from '../pages/Create';
+import Photo from '../pages/Photo';
 
 export default function Routes() {
   return (
@@ -19,6 +20,7 @@ export default function Routes() {
       <MyRoute exact path="/account/create" isClosed component={Create} />
       <MyRoute exact path="/account/edit" isClosed component={Edit} />
       <MyRoute exact path="/login/register" isLoggedOff component={Register} />
+      <MyRoute exact path="/photo/:id" isClosed component={Photo} />
       <MyRoute path="*" component={Page404} />
     </Switch>
   );

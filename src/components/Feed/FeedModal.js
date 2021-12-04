@@ -19,7 +19,11 @@ import Loading from '../Loading';
 import { useSelector } from 'react-redux';
 import Image from '../Image';
 
-export default function FeedModal({ photo, setModalPhoto }) {
+export default function FeedModal({
+  photo,
+  setModalPhoto,
+  isPhotoRoute = false,
+}) {
   const [photoData, setPhotoData] = useState([]);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -60,7 +64,38 @@ export default function FeedModal({ photo, setModalPhoto }) {
   return (
     <>
       <Loading isLoading={isLoading} />
-      <Modal onClick={handleOutsideClick}>
+      {isPhotoRoute ? (
+        <Modal onClick={handleOutsideClick}>
+          <PhotoContent>
+            <PhotoImg>
+              <Image src={photoData.url} alt={photoData.title} />
+            </PhotoImg>
+            <Details>
+              <div>
+                <Author>
+                  {user === photoData.author ? (
+                    <Delete onClick={handleDelete}>Delete</Delete>
+                  ) : (
+                    <Link to={`/profile/${photoData.author}`}>
+                      @{photoData.author}
+                    </Link>
+                  )}
+
+                  <Views>{photoData.views}</Views>
+                </Author>
+                <Title>
+                  <Link to={`/photo/${photoData.id}`}>{photoData.title}</Link>
+                </Title>
+                <ul>
+                  <li>{photoData.weight} kg</li>
+                  <li>{photoData.age} years</li>
+                </ul>
+              </div>
+            </Details>
+            <Comments id={photo.id} comments={comments.reverse()} />
+          </PhotoContent>
+        </Modal>
+      ) : (
         <PhotoContent>
           <PhotoImg>
             <Image src={photoData.url} alt={photoData.title} />
@@ -89,7 +124,7 @@ export default function FeedModal({ photo, setModalPhoto }) {
           </Details>
           <Comments id={photo.id} comments={comments.reverse()} />
         </PhotoContent>
-      </Modal>
+      )}
     </>
   );
 }
@@ -98,5 +133,6 @@ FeedModal.propTypes = {
   photo: PropTypes.shape({
     id: PropTypes.number.isRequired,
   }).isRequired,
-  setModalPhoto: PropTypes.func.isRequired,
+  setModalPhoto: PropTypes.func,
+  isPhotoRoute: PropTypes.bool,
 };

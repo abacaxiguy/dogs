@@ -10,7 +10,7 @@ export default function Image({ alt, ...props }) {
     setInterval(() => {
       setSkeleton(false);
       target.style.opacity = 1;
-    }, 1000);
+    }, 600);
   }
 
   return (
