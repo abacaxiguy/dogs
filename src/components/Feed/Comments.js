@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import CommentsForm from './CommentsForm';
 import { CommentContainer } from './styled';
 
-export default function Comments({ comments, id }) {
+export default function Comments({ comments, id, isPhotoRoute }) {
   const [commentList, setCommentList] = useState([]);
   const commentSection = useRef(null);
 
@@ -21,7 +21,10 @@ export default function Comments({ comments, id }) {
 
   return (
     <>
-      <CommentContainer ref={commentSection}>
+      <CommentContainer
+        style={isPhotoRoute ? { maxHeight: '13rem' } : {}}
+        ref={commentSection}
+      >
         {commentList === undefined ? (
           <></>
         ) : (
@@ -43,4 +46,5 @@ export default function Comments({ comments, id }) {
 Comments.propTypes = {
   id: PropTypes.number.isRequired,
   comments: PropTypes.array.isRequired,
+  isPhotoRoute: PropTypes.bool,
 };

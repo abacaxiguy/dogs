@@ -9,6 +9,7 @@ import {
   Views,
   Author,
   Delete,
+  PhotoRoute,
 } from './styled';
 import axios from '../../services/axios';
 import { toast } from 'react-toastify';
@@ -19,11 +20,7 @@ import Loading from '../Loading';
 import { useSelector } from 'react-redux';
 import Image from '../Image';
 
-export default function FeedModal({
-  photo,
-  setModalPhoto,
-  isPhotoRoute = false,
-}) {
+export default function FeedModal({ photo, setModalPhoto, isPhotoRoute }) {
   const [photoData, setPhotoData] = useState([]);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +61,7 @@ export default function FeedModal({
   return (
     <>
       <Loading isLoading={isLoading} />
-      {isPhotoRoute ? (
+      {!isPhotoRoute ? (
         <Modal onClick={handleOutsideClick}>
           <PhotoContent>
             <PhotoImg>
@@ -96,34 +93,40 @@ export default function FeedModal({
           </PhotoContent>
         </Modal>
       ) : (
-        <PhotoContent>
-          <PhotoImg>
-            <Image src={photoData.url} alt={photoData.title} />
-          </PhotoImg>
-          <Details>
-            <div>
-              <Author>
-                {user === photoData.author ? (
-                  <Delete onClick={handleDelete}>Delete</Delete>
-                ) : (
-                  <Link to={`/profile/${photoData.author}`}>
-                    @{photoData.author}
-                  </Link>
-                )}
+        <PhotoRoute>
+          <PhotoContent className="photoContent">
+            <PhotoImg className="photoImg">
+              <Image src={photoData.url} alt={photoData.title} />
+            </PhotoImg>
+            <Details className="details">
+              <div>
+                <Author>
+                  {user === photoData.author ? (
+                    <Delete onClick={handleDelete}>Delete</Delete>
+                  ) : (
+                    <Link to={`/profile/${photoData.author}`}>
+                      @{photoData.author}
+                    </Link>
+                  )}
 
-                <Views>{photoData.views}</Views>
-              </Author>
-              <Title>
-                <Link to={`/photo/${photoData.id}`}>{photoData.title}</Link>
-              </Title>
-              <ul>
-                <li>{photoData.weight} kg</li>
-                <li>{photoData.age} years</li>
-              </ul>
-            </div>
-          </Details>
-          <Comments id={photo.id} comments={comments.reverse()} />
-        </PhotoContent>
+                  <Views>{photoData.views}</Views>
+                </Author>
+                <Title>
+                  <span>{photoData.title}</span>
+                </Title>
+                <ul>
+                  <li>{photoData.weight} kg</li>
+                  <li>{photoData.age} years</li>
+                </ul>
+              </div>
+            </Details>
+            <Comments
+              isPhotoRoute={isPhotoRoute}
+              id={photo.id}
+              comments={comments.reverse()}
+            />
+          </PhotoContent>
+        </PhotoRoute>
       )}
     </>
   );

@@ -277,3 +277,21 @@ export const Delete = styled.button`
     border-color: #333;
   }
 `;
+
+export const PhotoRoute = styled.div`
+  .photoContent {
+    grid-template-columns: 1fr;
+    height: auto;
+    padding-bottom: 2rem;
+  }
+
+  .photoImg {
+    grid-row: 1;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .details {
+    padding: 2rem 1rem 1rem 1rem;
+  }
+`;

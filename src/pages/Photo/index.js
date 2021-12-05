@@ -5,8 +5,9 @@ import { toast } from 'react-toastify';
 
 import axios from '../../services/axios';
 import history from '../../services/history';
-import { PhotoContent } from '../../components/Feed/styled';
 import FeedModal from '../../components/Feed/FeedModal';
+import { MainContainer } from '../../components/Feed/styled';
+import { Container } from '../../styles/GlobalStyles';
 
 export default function Photo({ match }) {
   const id = get(match, 'params.id', '');
@@ -37,9 +38,11 @@ export default function Photo({ match }) {
   }, [id]);
 
   return (
-    <PhotoContent>
-      <FeedModal photo={photo} />
-    </PhotoContent>
+    <Container>
+      <MainContainer>
+        <FeedModal photo={photo} isPhotoRoute={true} />
+      </MainContainer>
+    </Container>
   );
 }
 
