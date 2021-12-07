@@ -8,7 +8,11 @@ import { Animate } from '../../styles/GlobalStyles';
 import Loading from '../Loading';
 import { useSelector } from 'react-redux';
 
-export default function FeedPhotos({ setModalPhoto, isFeedAccount }) {
+export default function FeedPhotos({
+  setModalPhoto,
+  isFeedAccount,
+  isFeedUser,
+}) {
   const [photos, setPhotos] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -30,15 +34,8 @@ export default function FeedPhotos({ setModalPhoto, isFeedAccount }) {
       <Loading isLoading={isLoading} />
       <Animate>
         <PhotosContainer>
-          {!isFeedAccount
-            ? photos.map((photo) => (
-                <FeedPhotosItem
-                  key={photo.id}
-                  photo={photo}
-                  setModalPhoto={setModalPhoto}
-                />
-              ))
-            : photos.map((photo) => {
+          {isFeedAccount
+            ? photos.map((photo) => {
                 if (photo.author === user)
                   return (
                     <FeedPhotosItem
@@ -47,7 +44,25 @@ export default function FeedPhotos({ setModalPhoto, isFeedAccount }) {
                       setModalPhoto={setModalPhoto}
                     />
                   );
-              })}
+              })
+            : isFeedUser
+            ? photos.map((photo) => {
+                if (photo.author === isFeedUser)
+                  return (
+                    <FeedPhotosItem
+                      key={photo.id}
+                      photo={photo}
+                      setModalPhoto={setModalPhoto}
+                    />
+                  );
+              })
+            : photos.map((photo) => (
+                <FeedPhotosItem
+                  key={photo.id}
+                  photo={photo}
+                  setModalPhoto={setModalPhoto}
+                />
+              ))}
         </PhotosContainer>
       </Animate>
     </>
@@ -57,4 +72,5 @@ export default function FeedPhotos({ setModalPhoto, isFeedAccount }) {
 FeedPhotos.propTypes = {
   setModalPhoto: PropTypes.func.isRequired,
   isFeedAccount: PropTypes.bool.isRequired,
+  isFeedUser: PropTypes.string,
 };
