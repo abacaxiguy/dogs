@@ -13,6 +13,7 @@ import {
   LoginSection,
 } from '../../styles/GlobalStyles';
 import { Register, Form } from './styled';
+import Head from '../../components/Head';
 
 export default function Login() {
   const isLoading = useSelector((state) => state.auth.isLoading);
@@ -34,6 +35,7 @@ export default function Login() {
 
   return (
     <Animate>
+      <Head title="Login" description="Login with your account at Dogs" />
       <LoginSection>
         <Forms>
           <Title>Login</Title>

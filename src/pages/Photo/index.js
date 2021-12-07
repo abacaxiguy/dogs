@@ -8,6 +8,7 @@ import history from '../../services/history';
 import FeedModal from '../../components/Feed/FeedModal';
 import { MainContainer } from '../../components/Feed/styled';
 import { Container } from '../../styles/GlobalStyles';
+import Head from '../../components/Head';
 
 export default function Photo({ match }) {
   const id = get(match, 'params.id', '');
@@ -39,6 +40,7 @@ export default function Photo({ match }) {
 
   return (
     <Container>
+      <Head title={`${photo.title} by @${photo.author}`} />
       <MainContainer>
         <FeedModal photo={photo} isPhotoRoute={true} />
       </MainContainer>

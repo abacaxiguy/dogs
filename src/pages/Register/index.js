@@ -14,6 +14,7 @@ import {
 import { Form } from '../Login/styled';
 import * as actions from '../../store/modules/auth/actions';
 import history from '../../services/history';
+import Head from '../../components/Head';
 
 export default function Register() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -68,6 +69,10 @@ export default function Register() {
 
   return (
     <Animate>
+      <Head
+        title="Register your account"
+        description="Create a new account now at Dogs"
+      />
       <LoginSection>
         <Forms>
           <Title>Register</Title>

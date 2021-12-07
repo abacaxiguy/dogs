@@ -19,11 +19,13 @@ import Comments from './Comments';
 import Loading from '../Loading';
 import { useSelector } from 'react-redux';
 import Image from '../Image';
+import Head from '../Head';
 
 export default function FeedModal({ photo, setModalPhoto, isPhotoRoute }) {
   const [photoData, setPhotoData] = useState([]);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [previousTitle] = useState(() => document.title);
 
   const user = useSelector((state) => state.auth.user.username);
 
@@ -40,12 +42,14 @@ export default function FeedModal({ photo, setModalPhoto, isPhotoRoute }) {
         setIsLoading(false);
       }
     }
-
     getData();
   }, [photo]);
 
   function handleOutsideClick(e) {
-    if (e.target === e.currentTarget) setModalPhoto(null);
+    if (e.target === e.currentTarget) {
+      setModalPhoto(null);
+      document.title = previousTitle;
+    }
   }
 
   async function handleDelete() {
@@ -60,6 +64,7 @@ export default function FeedModal({ photo, setModalPhoto, isPhotoRoute }) {
 
   return (
     <>
+      <Head title={`${photoData.title} by @${photoData.author}`} />
       <Loading isLoading={isLoading} />
       {!isPhotoRoute ? (
         <Modal onClick={handleOutsideClick}>

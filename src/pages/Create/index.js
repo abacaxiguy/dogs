@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { get } from 'lodash';
 import { isInt, isFloat } from 'validator';
@@ -15,6 +15,7 @@ import UserHeader from '../../components/UserHeader';
 import axios from '../../services/axios';
 import history from '../../services/history';
 import * as actions from '../../store/modules/auth/actions';
+import Head from '../../components/Head';
 
 export default function Create() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Create() {
   const [weight, setWeight] = useState('');
   const [age, setAge] = useState('');
   const [src, setSrc] = useState({});
+  const user = useSelector((state) => state.auth.user.username);
 
   function validate() {
     let formErrors = false;
@@ -102,6 +104,7 @@ export default function Create() {
   }
   return (
     <Container>
+      <Head title={`Post at ${user}'s account`} />
       <UserHeader />
       <Animate>
         <PhotoCreate>
