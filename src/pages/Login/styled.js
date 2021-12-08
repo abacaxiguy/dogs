@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { almostGray, typeSecond } from '../../config/variables';
 
 export const Form = styled.form`
-  margin-bottom: 2rem;
+  margin-bottom: 6rem;
 `;
 export const Register = styled.div`
-  margin-top: 4rem;
+  margin: 4rem 0 3rem 0;
 
   p {
     margin-top: 2rem;
@@ -15,7 +15,7 @@ export const Register = styled.div`
   h2 {
     font-family: ${typeSecond};
     line-height: 1;
-    font-size: 2rem;
+    font-size: 2.4rem;
   }
 
   h2::after {

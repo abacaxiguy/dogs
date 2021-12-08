@@ -176,6 +176,7 @@ export const Forms = styled.div`
   max-width: 25rem;
   padding: 2rem;
   padding-top: 4rem;
+  margin-top: 10vh;
 
   @media (max-width: 40rem) {
     & {
