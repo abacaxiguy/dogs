@@ -209,7 +209,9 @@ export const CommentContainer = styled.ul`
   overflow-y: auto;
   word-break: break-word;
   padding: 0 2rem;
-  margin-bottom: 2rem li {
+  margin-bottom: 2rem;
+
+  li {
     margin-bottom: 0.5rem;
     line-height: 1.2;
   }
@@ -299,5 +301,15 @@ export const PhotoRoute = styled.div`
 
   .details {
     padding: 2rem 1rem 1rem 1rem;
+  }
+`;
+
+export const CommentLogin = styled.div`
+  text-align: center;
+  padding-bottom: 1rem;
+
+  a {
+    color: ${primaryColor};
+    font-size: 1.2rem;
   }
 `;

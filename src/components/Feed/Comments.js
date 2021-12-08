@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import CommentsForm from './CommentsForm';
-import { CommentContainer } from './styled';
+import { CommentContainer, CommentLogin } from './styled';
 
 export default function Comments({ comments, id, isPhotoRoute }) {
   const [commentList, setCommentList] = useState([]);
@@ -38,7 +39,13 @@ export default function Comments({ comments, id, isPhotoRoute }) {
           })
         )}
       </CommentContainer>
-      {isLoggedIn ? <CommentsForm id={id} setComments={setCommentList} /> : ''}
+      {isLoggedIn ? (
+        <CommentsForm id={id} setComments={setCommentList} />
+      ) : (
+        <CommentLogin>
+          <Link to="/login">Log in</Link> to comment.
+        </CommentLogin>
+      )}
     </>
   );
 }
