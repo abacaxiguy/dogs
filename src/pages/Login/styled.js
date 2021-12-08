@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { typeSecond } from '../../config/variables';
+import { almostGray, typeSecond } from '../../config/variables';
 
 export const Form = styled.form`
   margin-bottom: 2rem;
@@ -21,7 +21,7 @@ export const Register = styled.div`
   h2::after {
     content: '';
     display: block;
-    background: #ddd;
+    background: ${almostGray};
     height: 0.5rem;
     width: 3rem;
     border-radius: 0.2rem;

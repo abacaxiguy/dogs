@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { primaryDarkColor } from '../../config/variables';
+import { secondaryDarkColor } from '../../config/variables';
 import userImg from '../../assets/user.svg';
 
 export const Head = styled.header`
@@ -28,7 +28,7 @@ export const Logo = styled(Link)`
 `;
 
 export const Login = styled(Link)`
-  color: ${primaryDarkColor};
+  color: ${secondaryDarkColor};
   display: flex;
   align-items: center;
 

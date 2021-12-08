@@ -3,7 +3,14 @@ import styled from 'styled-components';
 import ViewUrl from '../../assets/view.svg';
 import ViewBlackUrl from '../../assets/view-black.svg';
 import CommentsUrl from '../../assets/comments.svg';
-import { typeFirst } from '../../config/variables';
+import {
+  typeFirst,
+  secondaryDarkColor,
+  primaryLightColor,
+  primaryColor,
+  almostGray,
+  lightGray,
+} from '../../config/variables';
 
 export const MainContainer = styled.div`
   margin-top: 2rem;
@@ -89,7 +96,7 @@ export const Details = styled.div`
     position: relative;
     top: 3px;
     width: 2px;
-    background: #333;
+    background: ${secondaryDarkColor};
   }
 `;
 
@@ -202,8 +209,7 @@ export const CommentContainer = styled.ul`
   overflow-y: auto;
   word-break: break-word;
   padding: 0 2rem;
-
-  li {
+  margin-bottom: 2rem li {
     margin-bottom: 0.5rem;
     line-height: 1.2;
   }
@@ -230,7 +236,7 @@ export const Form = styled.form`
   button {
     border: none;
     cursor: pointer;
-    color: #333;
+    color: ${secondaryDarkColor};
     background: transparent;
     font-size: 1rem;
     padding: 0.2rem 1rem 0 1rem;
@@ -240,8 +246,8 @@ export const Form = styled.form`
 
   button:focus svg path,
   button:hover svg path {
-    fill: #fea;
-    stroke: #fb1;
+    fill: ${primaryLightColor};
+    stroke: ${primaryColor};
   }
 
   button:focus svg g,
@@ -260,7 +266,7 @@ export const Form = styled.form`
 `;
 
 export const Delete = styled.button`
-  background: #ddd;
+  background: ${almostGray};
   padding: 0.3rem 0.6rem;
   line-height: 1;
   border: 1px solid transparent;
@@ -273,8 +279,8 @@ export const Delete = styled.button`
   &:hover {
     outline: none;
     background: white;
-    box-shadow: 0 0 0 3px #eee;
-    border-color: #333;
+    box-shadow: 0 0 0 3px ${lightGray};
+    border-color: ${secondaryDarkColor};
   }
 `;
 

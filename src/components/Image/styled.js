@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { lightGray } from '../../config/variables';
+
 export const Wrapper = styled.div`
   display: grid;
 `;
@@ -15,8 +17,13 @@ export const Img = styled.img`
 export const Skeleton = styled.div`
   grid-area: 1/1;
   height: 100%;
-  background-image: linear-gradient(90deg, #eee 0px, #fff 50%, #eee 100%);
-  background-color: #eee;
+  background-image: linear-gradient(
+    90deg,
+    ${lightGray} 0px,
+    white 50%,
+    ${lightGray} 100%
+  );
+  background-color: ${lightGray};
   background-size: 200%;
   animation: skeleton 1.5s infinite linear;
 

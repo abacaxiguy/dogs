@@ -1,7 +1,15 @@
 import styled, { createGlobalStyle } from 'styled-components';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { typeFirst, typeSecond, primaryDarkColor } from '../config/variables';
+import {
+  typeFirst,
+  typeSecond,
+  primaryColor,
+  primaryDarkColor,
+  primaryLightColor,
+  secondaryDarkColor,
+  lightGray,
+} from '../config/variables';
 import loginImg from '../assets/login.jpg';
 
 export default createGlobalStyle`
@@ -13,7 +21,7 @@ export default createGlobalStyle`
     padding-top: 4rem;
     margin: 0px;
     box-sizing: border-box;
-    color: ${primaryDarkColor};
+    color: ${secondaryDarkColor};
     font-family: ${typeFirst};
   }
 
@@ -36,12 +44,12 @@ export default createGlobalStyle`
     display: block;
     font-size: 1rem;
     font-family: ${typeFirst};
-    color: ${primaryDarkColor};
+    color: ${secondaryDarkColor};
   }
 
   a{
     text-decoration: none;
-    color: #333;
+    color: ${secondaryDarkColor};
   }
 
 `;
@@ -55,21 +63,21 @@ export const Container = styled.section`
 export const InputContainer = styled.div`
   margin-bottom: 1rem;
   input {
-    border: 1px solid #eee;
+    border: 1px solid ${lightGray};
     display: block;
     width: 100%;
     font-size: 1rem;
     padding: 0.8rem;
     border-radius: 0.4rem;
-    background: #eee;
+    background: ${lightGray};
     transition: 0.4s;
 
     &:focus,
     &:hover {
       outline: none;
-      border-color: #fb1;
+      border-color: ${primaryColor};
       background: white;
-      box-shadow: 0 0 0 3px #fea;
+      box-shadow: 0 0 0 3px ${primaryLightColor};
     }
   }
 
@@ -87,8 +95,8 @@ export const Button = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 0.4rem;
-  background: #fb1;
-  color: #764701;
+  background: ${primaryColor};
+  color: ${primaryDarkColor};
   min-width: 8rem;
   padding: 0.8rem 1.2rem;
   box-sizing: border-box;
@@ -97,7 +105,7 @@ export const Button = styled.button`
   &:hover,
   &:focus {
     outline: none;
-    box-shadow: 0 0 0 3px #fea, 0 0 0 4px #fb1;
+    box-shadow: 0 0 0 3px ${primaryLightColor}, 0 0 0 4px ${primaryColor};
   }
 
   &:disabled {
@@ -132,7 +140,7 @@ export const Title = styled.h1`
     display: block;
     width: 1.5rem;
     height: 1.5rem;
-    background: #fb1;
+    background: ${primaryColor};
     position: absolute;
     bottom: 5px;
     left: -5px;

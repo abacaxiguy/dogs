@@ -1,4 +1,10 @@
 import styled from 'styled-components';
+import {
+  lightGray,
+  primaryColor,
+  primaryLightColor,
+  secondaryDarkColor,
+} from '../../config/variables';
 
 export const Head = styled.header`
   display: grid;
@@ -15,7 +21,7 @@ export const Nav = styled.nav`
 
   a,
   button {
-    background: #eee;
+    background: ${lightGray};
     border-radius: 0.2rem;
     height: 40px;
     width: 40px;
@@ -32,19 +38,19 @@ export const Nav = styled.nav`
   button:hover,
   button:focus {
     background: white;
-    box-shadow: 0 0 0 3px #eee;
-    border-color: #333;
+    box-shadow: 0 0 0 3px ${lightGray};
+    border-color: ${secondaryDarkColor};
     outline: none;
   }
 
   a.active {
     background: white;
-    box-shadow: 0 0 0 3px #fea;
-    border-color: #fb1;
+    box-shadow: 0 0 0 3px ${primaryLightColor};
+    border-color: ${primaryColor};
   }
 
   a.active svg > * {
-    fill: #fb1;
+    fill: ${primaryColor};
   }
 `;
 
@@ -79,7 +85,7 @@ export const MobileNav = styled.nav`
     background: none;
     width: 100%;
     border: none;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid ${lightGray};
     padding: 0.5rem 0;
     cursor: pointer;
   }
@@ -94,7 +100,7 @@ export const MobileNav = styled.nav`
 
   a:hover svg > *,
   button:hover svg > * {
-    fill: #fb1;
+    fill: ${primaryColor};
   }
 
   svg {
@@ -102,12 +108,12 @@ export const MobileNav = styled.nav`
   }
 
   a.active svg > * {
-    fill: #fb1;
+    fill: ${primaryColor};
   }
 `;
 
 export const MobileButton = styled.button`
-  background: #eee;
+  background: ${lightGray};
   border-radius: 0.2rem;
   padding: 0px;
   height: 40px;
@@ -137,10 +143,10 @@ export const MobileButton = styled.button`
 
   &:hover,
   &:focus {
-    color: #fb1;
+    color: ${primaryColor};
     background: white;
-    box-shadow: 0 0 0 3px #fea;
-    border-color: #fb1;
+    box-shadow: 0 0 0 3px ${primaryLightColor};
+    border-color: ${primaryColor};
     outline: none;
   }
 `;

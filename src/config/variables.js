@@ -1,8 +1,9 @@
-export const successColor = '#1F97F6';
-export const infoColor = '#1F97F6';
-export const errorColor = '#F2AF29';
-export const warningColor = '#F2AF29';
+export const secondaryDarkColor = '#333';
+export const primaryDarkColor = '#764701';
+export const primaryLightColor = '#fea';
+export const primaryColor = '#fb1';
+export const lightGray = '#eee';
+export const almostGray = '#ddd';
 
-export const primaryDarkColor = '#333';
 export const typeFirst = 'Helvetica, Arial, sans-serif';
 export const typeSecond = '"Spectral", Georgia';

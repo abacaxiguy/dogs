@@ -9,7 +9,7 @@ export default function Feed({ isFeedAccount = false, isFeedUser }) {
   const [modalPhoto, setModalPhoto] = useState(null);
 
   return (
-    <MainContainer>
+    <MainContainer style={{ marginBottom: '2rem' }}>
       {modalPhoto && (
         <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
       )}
