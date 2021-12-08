@@ -1,6 +1,7 @@
-import { get } from 'lodash';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { get } from 'lodash';
+
 import Feed from '../../components/Feed';
 import { MainContainer } from '../../components/Feed/styled';
 import Head from '../../components/Head';

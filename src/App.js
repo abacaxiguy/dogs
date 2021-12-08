@@ -6,26 +6,32 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import store, { persistor } from './store';
 import history from './services/history';
-import GlobalStyle from './styles/GlobalStyles';
+import GlobalStyle, { AppWrapper, AppMain } from './styles/GlobalStyles';
 import Header from './components/Header';
 import Routes from './routes';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <Router history={history}>
-          <Header />
-          <Routes />
-          <GlobalStyle />
-          <ToastContainer
-            autoClose={5000}
-            className="toast-container"
-            theme="colored"
-          />
-        </Router>
-      </PersistGate>
-    </Provider>
+    <AppWrapper>
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <Router history={history}>
+            <Header />
+            <AppMain>
+              <Routes />
+            </AppMain>
+            <GlobalStyle />
+            <ToastContainer
+              autoClose={5000}
+              className="toast-container"
+              theme="colored"
+            />
+            <Footer />
+          </Router>
+        </PersistGate>
+      </Provider>
+    </AppWrapper>
   );
 }
 

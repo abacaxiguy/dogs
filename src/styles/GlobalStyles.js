@@ -80,6 +80,7 @@ export const InputContainer = styled.div`
     padding-bottom: 0.5rem;
   }
 `;
+
 export const Button = styled.button`
   font-size: 1rem;
   font-family: ${typeFirst};
@@ -162,6 +163,7 @@ export const LoginSection = styled.section`
     }
   }
 `;
+
 export const Forms = styled.div`
   max-width: 25rem;
   padding: 2rem;
@@ -172,4 +174,14 @@ export const Forms = styled.div`
       max-width: 100%;
     }
   }
+`;
+
+export const AppWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh + 3.5rem);
+`;
+
+export const AppMain = styled.main`
+  flex: 1;
 `;
