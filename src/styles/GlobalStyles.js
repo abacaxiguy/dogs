@@ -15,12 +15,14 @@ import loginImg from '../assets/login.jpg';
 export default createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Spectral:wght@700&display=swap');
 
+  *{
+    box-sizing: border-box;
+  }
 
   body{
     outline: none;
     padding-top: 4rem;
     margin: 0px;
-    box-sizing: border-box;
     color: ${secondaryDarkColor};
     font-family: ${typeFirst};
   }

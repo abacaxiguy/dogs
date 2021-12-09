@@ -6,6 +6,12 @@ export const PhotoCreate = styled.div`
   gap: 4rem;
   margin-bottom: 2rem;
 
+  @media (max-width: 40rem) {
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 4rem;
+  }
+
   input[type='file'] {
     margin-bottom: 1rem;
   }
