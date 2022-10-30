@@ -9,6 +9,7 @@ import {
   primaryLightColor,
   secondaryDarkColor,
   lightGray,
+  almostGray,
 } from '../config/variables';
 import loginImg from '../assets/login.jpg';
 
@@ -74,12 +75,17 @@ export const InputContainer = styled.div`
     background: ${lightGray};
     transition: 0.4s;
 
-    &:focus,
-    &:hover {
+    &:not(:disabled):focus,
+    &:not(:disabled):hover {
       outline: none;
       border-color: ${primaryColor};
       background: white;
       box-shadow: 0 0 0 3px ${primaryLightColor};
+    }
+
+    &:disabled {
+      color: ${almostGray};
+      cursor: not-allowed;
     }
   }
 

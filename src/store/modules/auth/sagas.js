@@ -7,7 +7,14 @@ import history from '../../../services/history';
 import * as actions from './actions';
 import * as types from '../types';
 
-function* loginRequest({ payload }) {
+function persistRehydrate({ payload }) {
+  const token = get(payload, 'auth.token', '');
+  if (!token) return;
+
+  axios.defaults.headers.Authorization = `Bearer ${token}`;
+}
+
+function* loginRequest({ payload }, isEdit = false) {
   try {
     const response = yield call(axios.post, '/tokens', payload);
     yield put(actions.loginSuccess({ ...response.data }));
@@ -16,19 +23,12 @@ function* loginRequest({ payload }) {
 
     axios.defaults.headers.Authorization = `Bearer ${response.data.token}`;
 
-    history.push('/account');
+    !isEdit ? history.push('/account') : history.push('/account/edit');
   } catch (e) {
     toast.error('Username or password invalid!');
 
     yield put(actions.loginFailure());
   }
-}
-
-function persistRehydrate({ payload }) {
-  const token = get(payload, 'auth.token', '');
-  if (!token) return;
-
-  axios.defaults.headers.Authorization = `Bearer ${token}`;
 }
 
 function* registerRequest({ payload }) {
@@ -64,9 +64,38 @@ function* registerSuccess({ payload }) {
   }
 }
 
+function* editRequest({ payload }) {
+  const { username, email, password } = payload;
+
+  try {
+    let response;
+    if (password) response = yield call(axios.put, '/users', payload);
+    else response = yield call(axios.put, '/users', { username, email });
+
+    const { id } = response.data;
+
+    toast.success('Account edited sucessfully.');
+
+    if (password) yield put(actions.loginRequest({ username, password }));
+    else yield put(actions.editSuccess({ user: { id, username } }));
+
+  } catch (e) {
+    const errors = get(e, 'response.data.errors', []);
+
+    if (errors.length > 0) {
+      errors.map((error) => toast.error(error));
+    } else {
+      toast.error('Unknown error.');
+    }
+
+    yield put(actions.editFailure());
+  }
+}
+
 export default all([
   takeLatest(types.LOGIN_REQUEST, loginRequest),
-  takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
   takeLatest(types.REGISTER_REQUEST, registerRequest),
   takeLatest(types.REGISTER_SUCCESS, registerSuccess),
+  takeLatest(types.EDIT_REQUEST, editRequest),
+  takeLatest(types.PERSIST_REHYDRATE, persistRehydrate),
 ]);
