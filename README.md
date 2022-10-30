@@ -48,7 +48,7 @@ Installing all dependencies. After that, just start:
   npm start
 ```
 
-Remember that, this app is currently using the [Dogs API](https://github.com/abacaxiguy/dogs-api) that is nowadays running at [abacaxiguydogs.live](https://abacaxiguydogs.live)
+Remember that, this app is currently using the [Dogs API](https://github.com/abacaxiguy/dogs-api) ~that is nowadays running at [abacaxiguydogs.live](https://abacaxiguydogs.live)~
 
 ---
 
