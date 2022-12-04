@@ -30,7 +30,7 @@
 
 The design made for this website, was NOT made by me, it was made for the [<b>Origamid's _"React Completo"_ Course</b>](https://www.origamid.com/curso/react-completo/).
 
-I just _<del>yoinked</del>_ got the design from [them](https://dogs.origamid.dev) and made my own code for it. And the [API](https://abacaxiguydogs.live) was not made with Wordpress API REST, like in Origamid's course, but with Node.JS, and it's source code can be find [here](https://github.com/abacaxiguy/dogs-api)
+I just _<del>yoinked</del>_ got the design from [them](https://dogs.origamid.dev) and made my own code for it. And the [API](https://github.com/abacaxiguy/dogs_api) was not made with Wordpress API REST, like in Origamid's course, but with Node.JS, and it's source code can be find [here](https://github.com/abacaxiguy/dogs_api)
 
 ---
 
@@ -48,7 +48,7 @@ Installing all dependencies. After that, just start:
   npm start
 ```
 
-Remember that, this app is currently using the [Dogs API](https://github.com/abacaxiguy/dogs-api) that is nowadays running at [abacaxiguydogs.live](https://abacaxiguydogs.live)
+Remember that, this app is currently using the [Dogs API](https://github.com/abacaxiguy/dogs_api) ~that is nowadays running at [abacaxiguydogs.live](https://github.com/abacaxiguy/dogs_api)~
 
 ---
 
