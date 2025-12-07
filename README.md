@@ -48,7 +48,7 @@ Installing all dependencies. After that, just start:
   npm start
 ```
 
-Remember that, this app is currently using the [Dogs API](https://github.com/abacaxiguy/dogs_api) that is nowadays running at [abacaxiguydogs-api.herokuapp.com](https://abacaxiguydogs-api.herokuapp.com)
+Remember that, this app is currently using the [Dogs API](https://github.com/abacaxiguy/dogs_api) that is nowadays running at [dogs-api-nzcw.onrender.com](https://dogs-api-nzcw.onrender.com)
 
 ---
 
